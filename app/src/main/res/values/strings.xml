@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weather</string>
+
+    <string name="country">中国</string>
+
+    <string name="error_getProvinces">获取省份信息失败</string>
+    <string name="error_getCities">获取城市信息失败</string>
+    <string name="error_getCounties">获取区县信息失败</string>
 </resources>
