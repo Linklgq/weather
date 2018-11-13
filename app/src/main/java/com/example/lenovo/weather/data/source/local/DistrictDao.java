@@ -22,6 +22,15 @@ public interface DistrictDao {
     @Query("SELECT * FROM county WHERE cityCode = :cityCode")
     List<County> queryCounties(int cityCode);
 
+    @Query("SELECT * FROM province WHERE code = :provinceCode")
+    Province queryProvinceByCode(int provinceCode);
+
+    @Query("SELECT * FROM city WHERE code = :cityCode")
+    City queryCityByCode(int cityCode);
+
+    @Query("SELECT * FROM county WHERE weatherId = :weatherId")
+    County queryCountyByWeatherId(String weatherId);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertProvinces(List<Province> provinceList);
 

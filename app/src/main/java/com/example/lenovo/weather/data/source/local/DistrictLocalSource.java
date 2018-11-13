@@ -15,7 +15,7 @@ public class DistrictLocalSource implements DistrictRepository.LocalModel{
     private AppExecutors mAppExecutors;
 
     private DistrictLocalSource(){
-        mDistrictDao=DistrictDatabase.getInstance().districtDao();
+        mDistrictDao= MyDatabase.getInstance().districtDao();
         mAppExecutors=new AppExecutors();
     }
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.lenovo.weather.R;
+import com.example.lenovo.weather.data.source.local.WeatherLocalSource;
+import com.example.lenovo.weather.data.source.remote.WeatherRemoteSource;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String WEATHER_ID="weather_id";
@@ -16,9 +18,24 @@ public class WeatherActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+    WeatherContract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+
+        String weatherId=getIntent().getStringExtra(WEATHER_ID);
+        WeatherFragment weatherFragment= (WeatherFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_weather);
+
+        mPresenter=new WeatherPresenter(weatherId, WeatherLocalSource.getInstance(),
+                WeatherRemoteSource.getInstance(),weatherFragment);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 }

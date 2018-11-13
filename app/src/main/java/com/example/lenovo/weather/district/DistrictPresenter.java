@@ -132,6 +132,7 @@ public class DistrictPresenter implements DistrictContract.Presenter{
         });
     }
 
+
     private <T extends District> List<String> stringList(List<T> list){
         List<String> result=new ArrayList<>();
         for(T t:list)

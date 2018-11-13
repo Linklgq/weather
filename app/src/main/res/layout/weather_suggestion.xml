@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/weather_margin"
+    android:padding="@dimen/weather_padding"
+    android:background="@color/translucent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_title"
+        android:text="@string/weather_suggestion"></TextView>
+
+    <TextView
+        android:id="@+id/tv_comfort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/weather_margin"/>
+
+    <TextView
+        android:id="@+id/tv_carWash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/weather_margin"/>
+
+    <TextView
+        android:id="@+id/tv_sport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/weather_margin"/>
+</LinearLayout>

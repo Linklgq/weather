@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weather_padding">10dp</dimen>
+    <dimen name="weather_margin">10dp</dimen>
+    <dimen name="weather_title">22sp</dimen>
+</resources>
