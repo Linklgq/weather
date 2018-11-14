@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPadding="@dimen/weather_padding"
+    android:layout_margin="@dimen/weather_margin">
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/weather_margin"
+        android:layout_gravity="left">
+        <TextView
+            android:id="@+id/tv_county"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="深圳"></TextView>
+
+        <TextView
+            android:id="@+id/tv_parentDistrict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/weather_margin"
+            android:text="广东，深圳"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/weather_padding"
+        android:layout_gravity="right">
+        <TextView
+            android:id="@+id/tv_tmp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="23℃"/>
+
+        <TextView
+            android:id="@+id/tv_weather_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/weather_margin"
+            android:textSize="22sp"
+            android:text="多云"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

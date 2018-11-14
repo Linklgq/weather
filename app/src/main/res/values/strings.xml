@@ -14,4 +14,10 @@
     <string name="weather_suggestion">生活建议</string>
 
     <string name="weather_api_key">eccb4d135c9e4cd580667fa8b1888f53</string>
+    <string name="current_district_key">current_district</string>
+
+    <string name="weather_manager">管理</string>
+    <string name="weather_item_exist">该地区已在列表中</string>
+    <string name="weather_item_error">获取天气数据失败</string>
+    <string name="menu_remove">删除</string>
 </resources>

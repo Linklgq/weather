@@ -1,5 +1,7 @@
 package com.example.lenovo.weather.district;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +16,25 @@ import android.widget.Toast;
 
 import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.source.DistrictRepository;
+import com.example.lenovo.weather.util.L;
 import com.example.lenovo.weather.weather.WeatherActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistrictActivity extends AppCompatActivity implements DistrictContract.View{
+    private static final String FOR_RESULT_KEY="for_result";
+    public static final String WEATHER_ID_KEY="weatherId";
+
+    public static void startForResult(Activity context, boolean forResult,int requestCode){
+        Intent intent=new Intent(context,DistrictActivity.class);
+        intent.putExtra(FOR_RESULT_KEY,forResult);
+        context.startActivityForResult(intent,requestCode);
+        L.d("startForResult: "+requestCode);
+    }
+
     private DistrictContract.Presenter mPresenter;
+    private boolean mForResult;
 
     private ListView mDistricts;
     private ArrayAdapter<String> mAdapter;
@@ -33,6 +47,8 @@ public class DistrictActivity extends AppCompatActivity implements DistrictContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_district);
 
+        if(getIntent()!=null)
+            mForResult=getIntent().getBooleanExtra(FOR_RESULT_KEY,false);
         mPresenter=new DistrictPresenter(DistrictRepository.getInstance(),this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -73,7 +89,13 @@ public class DistrictActivity extends AppCompatActivity implements DistrictContr
 
     @Override
     public void showWeather(String weatherId) {
-        WeatherActivity.startWithWeatherId(this,weatherId);
+        if(mForResult){
+            Intent intent=new Intent();
+            intent.putExtra(WEATHER_ID_KEY,weatherId);
+            setResult(RESULT_OK,intent);
+            L.d("showWeather: "+"result ok");
+        }else
+            WeatherActivity.startWithWeatherId(this,weatherId);
     }
 
     @Override

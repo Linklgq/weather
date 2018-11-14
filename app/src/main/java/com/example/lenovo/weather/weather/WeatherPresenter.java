@@ -1,6 +1,9 @@
 package com.example.lenovo.weather.weather;
 
+import com.example.lenovo.weather.MyApplication;
+import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.entity.gson.HeWeather;
+import com.example.lenovo.weather.util.SharedUtil;
 
 public class WeatherPresenter implements WeatherContract.Presenter {
     private WeatherContract.LocalModel mLocalModel;
@@ -25,6 +28,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
     @Override
     public void start() {
         mView.showWaiting(true);
+
         mLocalModel.queryWeather(mWeatherId, new WeatherContract.LoadWeatherListener() {
             @Override
             public void onSuccess(HeWeather heWeather, long updateTime) {
@@ -62,6 +66,12 @@ public class WeatherPresenter implements WeatherContract.Presenter {
                 }
             });
         }
+    }
+
+    @Override
+    public void saveStatus() {
+        SharedUtil.putString(MyApplication.getContext().getString(R.string.current_district_key),
+                mWeatherId);
     }
 
     private boolean isLatest(long time){

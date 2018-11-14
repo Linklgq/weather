@@ -6,7 +6,7 @@ import com.example.lenovo.weather.data.entity.gson.HeWeather;
 
 public interface WeatherContract {
     interface Presenter extends BasePresenter{
-
+        void saveStatus();
     }
 
     interface View extends BaseView<Presenter>{

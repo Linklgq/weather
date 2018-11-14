@@ -1,11 +1,15 @@
 package com.example.lenovo.weather.weather;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -18,6 +22,7 @@ import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.customview.MyListView;
 import com.example.lenovo.weather.data.entity.gson.Forecast;
 import com.example.lenovo.weather.data.entity.gson.HeWeather;
+import com.example.lenovo.weather.manage.ManageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +76,8 @@ public class WeatherFragment extends Fragment implements WeatherContract.View{
         mCarWash=root.findViewById(R.id.tv_carWash);
         mSport=root.findViewById(R.id.tv_sport);
 
+        setHasOptionsMenu(true);
+
         return root;
     }
 
@@ -120,7 +127,30 @@ public class WeatherFragment extends Fragment implements WeatherContract.View{
 
     @Override
     public void showUpdating(boolean updating) {
+        // TODO: 2018/11/14
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.saveStatus();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.weather_fragment_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_add:
+                Intent intent=new Intent(getActivity(), ManageActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().finish();
+                break;
+        }
+        return true;
     }
 
     private static class ForecastAdapter extends ArrayAdapter<Forecast>{

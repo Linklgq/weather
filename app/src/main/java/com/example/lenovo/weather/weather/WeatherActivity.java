@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.source.local.WeatherLocalSource;
@@ -31,6 +32,10 @@ public class WeatherActivity extends AppCompatActivity {
 
         mPresenter=new WeatherPresenter(weatherId, WeatherLocalSource.getInstance(),
                 WeatherRemoteSource.getInstance(),weatherFragment);
+
+        Toolbar toolbar=findViewById(R.id.tb_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

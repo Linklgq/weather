@@ -8,27 +8,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/ll_weather_content"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/ll_weather_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
 
-            <include layout="@layout/weather_basic"></include>
+                <include layout="@layout/weather_basic"></include>
 
-            <include layout="@layout/weather_forecast"></include>
+                <include layout="@layout/weather_forecast"></include>
 
-            <include layout="@layout/weather_aqi"></include>
+                <include layout="@layout/weather_aqi"></include>
 
-            <include layout="@layout/weather_suggestion"></include>
-        </LinearLayout>
+                <include layout="@layout/weather_suggestion"></include>
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"/>
+
+            <ProgressBar
+                android:id="@+id/prg_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </FrameLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <ProgressBar
-        android:id="@+id/prg_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
 </FrameLayout>

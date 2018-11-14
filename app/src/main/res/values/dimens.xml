@@ -3,4 +3,6 @@
     <dimen name="weather_padding">10dp</dimen>
     <dimen name="weather_margin">10dp</dimen>
     <dimen name="weather_title">22sp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
