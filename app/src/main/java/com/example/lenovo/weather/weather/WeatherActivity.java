@@ -3,14 +3,14 @@ package com.example.lenovo.weather.weather;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.example.lenovo.weather.BaseActivity;
 import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.source.local.WeatherLocalSource;
 import com.example.lenovo.weather.data.source.remote.WeatherRemoteSource;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends BaseActivity {
     private static final String WEATHER_ID="weather_id";
 
     public static void startWithWeatherId(Context context,String weatherId){

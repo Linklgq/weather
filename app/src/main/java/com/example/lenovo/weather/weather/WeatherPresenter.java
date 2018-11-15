@@ -6,6 +6,11 @@ import com.example.lenovo.weather.data.entity.gson.HeWeather;
 import com.example.lenovo.weather.util.SharedUtil;
 
 public class WeatherPresenter implements WeatherContract.Presenter {
+    /*
+    * 半小时
+    * */
+    private static final int MAX_SPAN=1000*60*30;
+
     private WeatherContract.LocalModel mLocalModel;
     private WeatherContract.RemoteModel mRemoteModel;
     private WeatherContract.View mView;
@@ -45,26 +50,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
             }
         });
         if(!mLatest){
-            if(mLocalCache) mView.showUpdating(true);
-            mRemoteModel.queryWeather(mWeatherId, new WeatherContract.LoadWeatherListener() {
-                @Override
-                public void onSuccess(HeWeather heWeather, long updateTime) {
-                    if(mLocalCache) mView.showUpdating(false);
-                    else mView.showWaiting(false);
-
-                    mView.showWeather(heWeather);
-                    mLocalModel.syncWeather(mWeatherId,heWeather,updateTime);
-                    mLocalCache=true;
-                }
-
-                @Override
-                public void onFailure() {
-                    if(mLocalCache) mView.showUpdating(false);
-                    else mView.showWaiting(false);
-
-                    mView.showError("//todo");
-                }
-            });
+            updateWeather();
         }
     }
 
@@ -74,8 +60,31 @@ public class WeatherPresenter implements WeatherContract.Presenter {
                 mWeatherId);
     }
 
+    @Override
+    public void updateWeather() {
+        if(mLocalCache) mView.showUpdating(true);
+        mRemoteModel.queryWeather(mWeatherId, new WeatherContract.LoadWeatherListener() {
+            @Override
+            public void onSuccess(HeWeather heWeather, long updateTime) {
+                if(mLocalCache) mView.showUpdating(false);
+                else mView.showWaiting(false);
+
+                mView.showWeather(heWeather);
+                mLocalModel.syncWeather(mWeatherId,heWeather,updateTime);
+                mLocalCache=true;
+            }
+
+            @Override
+            public void onFailure() {
+                if(mLocalCache) mView.showUpdating(false);
+                else mView.showWaiting(false);
+
+                mView.showError("//todo");
+            }
+        });
+    }
+
     private boolean isLatest(long time){
-        // TODO: 2018/11/12
-        return false;
+        return time-System.currentTimeMillis()<MAX_SPAN;
     }
 }

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +13,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.lenovo.weather.BaseActivity;
 import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.source.DistrictRepository;
 import com.example.lenovo.weather.util.L;
@@ -22,7 +22,7 @@ import com.example.lenovo.weather.weather.WeatherActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DistrictActivity extends AppCompatActivity implements DistrictContract.View{
+public class DistrictActivity extends BaseActivity implements DistrictContract.View{
     private static final String FOR_RESULT_KEY="for_result";
     public static final String WEATHER_ID_KEY="weatherId";
 

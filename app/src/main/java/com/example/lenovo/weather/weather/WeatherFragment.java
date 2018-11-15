@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,7 @@ import com.example.lenovo.weather.customview.MyListView;
 import com.example.lenovo.weather.data.entity.gson.Forecast;
 import com.example.lenovo.weather.data.entity.gson.HeWeather;
 import com.example.lenovo.weather.manage.ManageActivity;
+import com.example.lenovo.weather.util.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.View{
 
     private ProgressBar mLoadingBar;
     private ViewGroup mWeatherContent;
+    private SwipeRefreshLayout mUpdateSL;
 
     private TextView mTemperature;
     private TextView mWeatherType;
@@ -58,6 +61,11 @@ public class WeatherFragment extends Fragment implements WeatherContract.View{
 
         mLoadingBar=root.findViewById(R.id.prg_loading);
         mWeatherContent=root.findViewById(R.id.ll_weather_content);
+        mUpdateSL=root.findViewById(R.id.sl_update);
+        mUpdateSL.setColorSchemeResources(R.color.colorAccent);
+        mUpdateSL.setOnRefreshListener(()->{
+            mPresenter.updateWeather();
+        });
 
         mTemperature=root.findViewById(R.id.tv_tmp);
         mWeatherType=root.findViewById(R.id.tv_type);
@@ -127,7 +135,9 @@ public class WeatherFragment extends Fragment implements WeatherContract.View{
 
     @Override
     public void showUpdating(boolean updating) {
-        // TODO: 2018/11/14
+        if(!updating||!mUpdateSL.isRefreshing())
+            mUpdateSL.setRefreshing(updating);
+        L.d("showUpdating: update "+updating);
     }
 
     @Override

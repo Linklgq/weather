@@ -2,16 +2,16 @@ package com.example.lenovo.weather.manage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
+import com.example.lenovo.weather.BaseActivity;
 import com.example.lenovo.weather.R;
 import com.example.lenovo.weather.data.source.WeatherManageRepository;
 import com.example.lenovo.weather.district.DistrictActivity;
 import com.example.lenovo.weather.util.SharedUtil;
 import com.example.lenovo.weather.weather.WeatherActivity;
 
-public class ManageActivity extends AppCompatActivity {
+public class ManageActivity extends BaseActivity {
     private ManageContract.Presenter mPresenter;
     private ManageFragment mFragment;
 
